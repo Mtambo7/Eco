@@ -19,3 +19,17 @@ export const createProduct = async (req: Request, res: Response) => {
     res.status(200).json({ message: "createProduct" })
 
 }
+
+
+export const updateProduct = async (req: Request, res: Response) => {
+    console.log("updateProduct")
+    res.status(200).json({ message: "updateProduct" })
+
+}
+
+
+export const deleteProduct = async (req: Request, res: Response) => {
+    console.log("deleteProduct")
+    res.status(200).json({ message: "deleteProduct" })
+
+}
