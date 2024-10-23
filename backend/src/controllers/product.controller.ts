@@ -46,6 +46,10 @@ export const createProduct = async (
 ): Promise<any> => {
   const { body } = req;
   try {
+    if (req.user.role !== "seller") {
+      return res.status(401).json({ message: "You dont have permission" });
+    }
+
     const { value, error } = createProductSchema.validate(body);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
@@ -69,6 +73,10 @@ export const updateProduct = async (
     params: { id },
   } = req;
   try {
+    if (req.user.role !== "seller") {
+      return res.status(401).json({ message: "You dont have permission" });
+    }
+
     const { value, error } = updateProductSchema.validate(body);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
@@ -97,6 +105,10 @@ export const deleteProduct = async (
 ): Promise<any> => {
   const { id } = req.params;
   try {
+    if (req.user.role !== "seller") {
+      return res.status(401).json({ message: "You dont have permission" });
+    }
+
     const [deletedProduct] = await db
       .delete(productsTable)
       .where(eq(productsTable.id, Number(id)))

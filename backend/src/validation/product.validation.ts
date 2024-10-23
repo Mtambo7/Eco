@@ -12,4 +12,4 @@ export const updateProductSchema = Joi.object({
     description: Joi.string(),
     image: Joi.string(),
     price: Joi.number(),
-})
+})  
