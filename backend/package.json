@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node --import=tsx --watch --trace-warnings --env-file=.env src/index.ts",
     "build": "tsc",
+    "start": "node --watch --trace-warnings --env-file=.env dist/src/index.js",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
