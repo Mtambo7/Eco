@@ -47,7 +47,7 @@ export const getOrders = async (req: Request, res: Response) => {
   }
 };
 
-export const getOrderById = async (req: Request, res: Response) => {
+export const getOrderById = async (req: Request, res: Response): Promise<any> => {
   const { id } = req.params;
   try {
     const orderId = parseInt(id);
@@ -59,7 +59,7 @@ export const getOrderById = async (req: Request, res: Response) => {
       .leftJoin(orderItermsTable, eq(ordersTable.id, orderItermsTable.orderId));
 
     if (order.length === 0) {
-      res.status(404).send("Order not found");
+     return res.status(404).send("Order not found");
     }
 
     const mergedOrder = {

@@ -1,6 +1,6 @@
 import { doublePrecision, integer, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
-import { usersTable } from "./userSchema";
-import { productsTable } from "./productsSchema";
+import { usersTable } from "./userSchema.js";
+import { productsTable } from "./productsSchema.js";
 
 export const ordersTable = pgTable("orders", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
