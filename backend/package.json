@@ -23,7 +23,8 @@
     "express": "^4.21.1",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.13.0"
+    "pg": "^8.13.0",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

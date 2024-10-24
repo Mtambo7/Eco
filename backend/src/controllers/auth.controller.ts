@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import { createUserSchema, loginSchema } from "../validation/user.validation";
 import bcrypt from "bcryptjs";
-import { usersTable } from "../db/userSchema";
 import { eq } from "drizzle-orm";
-import { db } from "../db";
-import { generateTokenAndCookie } from "../utils/generateTokenAndCookie";
+
+import { createUserSchema, loginSchema } from "../validation/user.validation.js";
+import { usersTable } from "../db/userSchema.js";
+import { db } from "../db/index.js";
+import { generateTokenAndCookie } from "../utils/generateTokenAndCookie.js";
 export const signup = async (req: Request, res: Response): Promise<any> => {
   const { body } = req;
   try {
@@ -61,13 +62,15 @@ export const login = async (req: Request, res: Response): Promise<any> => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    generateTokenAndCookie(user.id, res);
+    const token = generateTokenAndCookie(user.id, res);
 
     const { password, ...userWithoutPassword } = user;
 
-    res
-      .status(200)
-      .json({ user: userWithoutPassword, message: "login successully" });
+    res.status(200).json({
+      token: token,
+      user: userWithoutPassword,
+      message: "login successully",
+    });
   } catch (error) {
     console.log(`Error in login controller: ${error}`);
     res.status(500).json({ error: "Internal server error" });
@@ -76,24 +79,25 @@ export const login = async (req: Request, res: Response): Promise<any> => {
 
 export const logout = async (req: Request, res: Response) => {
   try {
-      res.clearCookie("token").status(200).json({ message: "Logout successfully" });      
+    res
+      .clearCookie("token")
+      .status(200)
+      .json({ message: "Logout successfully" });
   } catch (error) {
     console.log(`Error in logout controller: ${error}`);
     res.status(500).json({ error: "Internal server error" });
   }
 };
 
-export const getMe = async (req: Request, res: Response):Promise<any> => {
-  
+export const getMe = async (req: Request, res: Response): Promise<any> => {
   try {
     const [user] = await db
-    .select()
-    .from(usersTable)
-    .where(eq(usersTable.id, req.user.id));
+      .select()
+      .from(usersTable)
+      .where(eq(usersTable.id, req.user.id));
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    
 
     const { password, ...userWithoutPassword } = user;
 

@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm";
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { db } from "../db";
-import { usersTable } from "../db/userSchema";
+import { db } from "../db/index.js";
+import { usersTable } from "../db/userSchema.js";
 
 
 interface DecodedToken extends jwt.JwtPayload {

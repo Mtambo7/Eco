@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 
-import { db } from "../db";
-import { productsTable } from "../db/productsSchema";
+import { db } from "../db/index.js";
+import { productsTable } from "../db/productsSchema.js";
 import {
   createProductSchema,
   updateProductSchema,
-} from "../validation/product.validation";
+} from "../validation/product.validation.js";
 import { eq } from "drizzle-orm";
 
 export const getProducts = async (req: Request, res: Response) => {

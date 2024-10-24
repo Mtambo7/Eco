@@ -15,6 +15,13 @@
       "when": 1729579352177,
       "tag": "0001_safe_slayback",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729743726925,
+      "tag": "0002_tough_freak",
+      "breakpoints": true
     }
   ]
 }
