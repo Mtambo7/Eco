@@ -2,7 +2,7 @@ import {StatusBar} from 'expo-status-bar';
 import {StyleSheet, Text, View} from 'react-native';
 
 export default function App() {
-
+    const user: string = "Mtambo"
 
     return (
 
@@ -11,7 +11,7 @@ export default function App() {
 
 
             <Text>hi there </Text>
-            <Text>Hello word</Text>
+            <Text>{user} </Text>
             <Text>Hello my girl</Text>
 
             <StatusBar style="auto"/>
